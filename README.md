@@ -52,3 +52,7 @@ pip install pandas
 Explore and run the provided scripts to practice data cleaning.
 
 ---
+
+## Resources
+- **Retail Sales Dataset:** [Sample Sales Data on Kaggle](https://www.kaggle.com/datasets/kyanyoga/sample-sales-data)
+- **Dataset Overview:** [Overview of the Retail Sales Kaggle Dataset](https://22.frenchintelligence.org/2024/06/28/overview-of-the-retail-sales-kaggle-dataset/?utm_source)
