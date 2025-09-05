@@ -5,21 +5,39 @@ import pandas as pd # type: ignore
 # -----------------------------
 df = pd.read_csv("sales_data_sample.csv", encoding="latin1")
 
+
+# ----------------------------- 
+# Display initial info
+# -----------------------------
 print("=== Initial Dataset Info ===")
-print("\nMissing values before cleaning:\n", df.isnull().sum())
+print(df.shape)
+print(df.dtypes)
+
+
+# ----------------------------- 
+# Displaying missing values in each column
+# -----------------------------
+print("\n=== Missing values before cleaning: ===")
+print(df.isnull().sum())
+
 
 # -----------------------------
-# Step 2: Handle Missing Data
+# Displaying missing values to those columns we will handle
 # -----------------------------
+print("\nMissing ADDRESSLINE2 values before filling:", df["ADDRESSLINE2"].isnull().sum())
 print("\nMissing STATE values before filling:", df["STATE"].isnull().sum())
+print("\nMissing POSTALCODE values before filling:", df["POSTALCODE"].isnull().sum())
+print("\nMissing TERRITORY values before filling:", df["TERRITORY"].isnull().sum())
+
+
+# -----------------------------
+# Handle Missing Data for STATE, POSTALCODE, TERRITORY
+# -----------------------------
 df["STATE"] = df["STATE"].fillna("Unknown")
 df["POSTALCODE"] = df["POSTALCODE"].fillna("Unknown")
 df["TERRITORY"] = df["TERRITORY"].fillna("Not Assigned")
 
-
-# -----------------------------
-# Drop this column if >50% missing
-# -----------------------------
+# --- Handle ADDRESSLINE2 ---
 if "ADDRESSLINE2" in df.columns:
     if df["ADDRESSLINE2"].isnull().sum() / len(df) > 0.5:
         df = df.drop(columns=["ADDRESSLINE2"])
@@ -27,41 +45,61 @@ if "ADDRESSLINE2" in df.columns:
 
 
 # -----------------------------
-# Step 3: Fix Data Formatting
+# Fix Data Formatting: Order Date from String to Datetime
 # -----------------------------
 df["ORDERDATE"] = pd.to_datetime(df["ORDERDATE"], errors="coerce")
 
+
 # -----------------------------
-# Step 4: Detect & Manage Outliers in SALES
+# Detect & Manage Outliers in SALES: Skewed Distribution
 # -----------------------------
 Q1 = df["SALES"].quantile(0.25)
 Q3 = df["SALES"].quantile(0.75)
-IQR = Q3 - Q1
-lower_bound = Q1 - 1.5 * IQR
-upper_bound = Q3 + 1.5 * IQR
+IQR = Q3 - Q1 # Formula: Interquartile Range 
+upper_bound = Q3 + 1.5 * IQR # 1.5 is the standard multiplier
+lower_bound = Q1 - 1.5 * IQR # 1.5 is the standard multiplier
 
-# Flag outliers
+
+# --- Flag and display number of outliers ---
 df["SALES_outlier"] = (df["SALES"] < lower_bound) | (df["SALES"] > upper_bound)
-print("\nNumber of outliers in SALES (before handling):", df["SALES_outlier"].sum())
+print("\nNumber of outliers in SALES (before Capping):", df["SALES_outlier"].sum())
+
+
+# -----------------------------
+# Display the max and min values of SALES before Capping outliers
+# -----------------------------
+print("\nUPPER BOUND", upper_bound)
+print("LOWER BOUND", lower_bound)
+
 
 # --- CAPPING ---
-df.loc[df["SALES"] < lower_bound, "SALES"] = lower_bound
 df.loc[df["SALES"] > upper_bound, "SALES"] = upper_bound
+df.loc[df["SALES"] < lower_bound, "SALES"] = lower_bound
 
-print("LOWER BOUND", lower_bound)
-print("UPPER BOUND", upper_bound)
 
-# Recalculate outliers after handling
+# --- Recalculate outliers after Capping ---
 df["SALES_outlier"] = (df["SALES"] < lower_bound) | (df["SALES"] > upper_bound)
-print("Number of outliers in SALES (after handling):", df["SALES_outlier"].sum())
+print("\nNumber of outliers in SALES (after Capping):", df["SALES_outlier"].sum())
+
 
 # -----------------------------
-# Step 5: Proof of Cleaning
+# Proof of Cleaning
 # -----------------------------
 print("\n=== Cleaned Dataset Info ===")
-# print(df.shape)
-# print(df.dtypes)
-print("\nMissing values after cleaning:\n", df.isnull().sum())
+print(df.shape)
+print(df.dtypes)
+print("\nMissing values after cleaning:")
+print(df.isnull().sum())
+
+
+# -----------------------------
+# Displaying missing values after Data Cleaning
+# -----------------------------
+# print("\nMissing ADDRESSLINE2 values before filling:", df["ADDRESSLINE2"].isnull().sum())
+print("\nMissing STATE values before filling:", df["STATE"].isnull().sum())
+print("\nMissing POSTALCODE values before filling:", df["POSTALCODE"].isnull().sum())
+print("\nMissing TERRITORY values before filling:", df["TERRITORY"].isnull().sum())
+
 
 print("\n=== Sample Cleaned Data ===")
 print(df.head(10))
