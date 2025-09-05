@@ -26,7 +26,7 @@ df = pd.read_csv("sales_data_sample.csv", encoding="latin1")
 
 
 # -----------------------------
-# Handle Missing Data
+# Handle Missing Data: Imputation
 # -----------------------------
 df["STATE"] = df["STATE"].fillna("Unknown")
 df["POSTALCODE"] = df["POSTALCODE"].fillna("Unknown")
@@ -34,7 +34,7 @@ df["TERRITORY"] = df["TERRITORY"].fillna("Not Assigned")
 
 
 # -----------------------------
-# Drop AddressLine2 if >50% missing
+# Drop AddressLine2 if >50% missing: Deletion
 # -----------------------------
 if "ADDRESSLINE2" in df.columns:
     if df["ADDRESSLINE2"].isnull().sum() / len(df) > 0.5:
