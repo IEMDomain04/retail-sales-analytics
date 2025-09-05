@@ -31,7 +31,7 @@ print("\nMissing TERRITORY values before filling:", df["TERRITORY"].isnull().sum
 
 
 # -----------------------------
-# Handle Missing Data for STATE, POSTALCODE, TERRITORY
+# Handle Missing Data for STATE, POSTALCODE, TERRITORY using IMPUTATION
 # -----------------------------
 df["STATE"] = df["STATE"].fillna("Unknown")
 df["POSTALCODE"] = df["POSTALCODE"].fillna("Unknown")
