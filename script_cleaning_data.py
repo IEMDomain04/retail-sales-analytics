@@ -1,7 +1,7 @@
 import pandas as pd # type: ignore
 
 # ----------------------------- 
-# Step 1: Load dataset
+# Load dataset
 # -----------------------------
 df = pd.read_csv("sales_data_sample.csv", encoding="latin1")
 
