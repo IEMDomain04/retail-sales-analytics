@@ -66,6 +66,11 @@ upper_bound = Q3 + 1.5 * IQR
 df.loc[df["SALES"] < lower_bound, "SALES"] = lower_bound
 df.loc[df["SALES"] > upper_bound, "SALES"] = upper_bound
 
+# This fixes the error for DATETIME Conversion
+print("\n=== Cleaned Dataset Info ===")
+print(df.shape)
+print(df.dtypes)
+
 
 # -----------------------------
 # Call the function: Save cleaned dataset... Kindly change the filename if needed to increment for the version..
