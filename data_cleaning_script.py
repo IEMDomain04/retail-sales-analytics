@@ -34,12 +34,14 @@ df["TERRITORY"] = df["TERRITORY"].fillna("Not Assigned")
 
 
 # -----------------------------
-# Drop AddressLine2 if >50% missing: Deletion
+# Dropping columns that are not needed
 # -----------------------------
-if "ADDRESSLINE2" in df.columns:
-    if df["ADDRESSLINE2"].isnull().sum() / len(df) > 0.5:
-        df = df.drop(columns=["ADDRESSLINE2"])
-        print("\nADDRESSLINE2 dropped (too many missing values).")
+df = df.drop(columns=["ADDRESSLINE2"])
+df = df.drop(columns=["STATE"])
+df = df.drop(columns=["TERRITORY"])
+df = df.drop(columns=["POSTALCODE"])
+df = df.drop(columns=["PHONE"])
+
 
 
 # -----------------------------
