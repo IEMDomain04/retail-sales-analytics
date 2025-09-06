@@ -2,6 +2,8 @@
 
 This project demonstrates data cleaning techniques on retail sales data. It is designed for the Elective Data Science course.
 
+[Press me to see Dashboard sample..](visuals/retail-sale-img.png)
+
 ## Dataset Characteristics
 
 The retail sales dataset consists of 2823 rows and 25 columns, but it also presents several common data quality issues:
