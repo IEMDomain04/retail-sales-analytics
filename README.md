@@ -2,6 +2,14 @@
 
 This project demonstrates data cleaning techniques on retail sales data. It is designed for the Elective Data Science course.
 
+## Dataset Characteristics
+
+The retail sales dataset consists of 2823 rows and 25 columns, but it also presents several common data quality issues:
+
+- **Missing Values:** Some columns contain missing entries that require appropriate handling to ensure data integrity.
+- **Outliers:** The dataset includes outliers that should be identified and addressed to prevent skewed analysis.
+- **Incorrect Data Types:** Certain columns have incorrect data types, which may affect downstream modeling and visualization. These need to be corrected for accurate processing.
+
 ## Getting Started
 
 Follow these steps to set up and run the project:
