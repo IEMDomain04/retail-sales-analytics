@@ -15,6 +15,8 @@ This project demonstrates data cleaning techniques on retail sales data. It is d
 
 Our team carried out **prescriptive analytics** together.
 
+## About the dataset
+
 The retail sales dataset consists of 2823 rows and 25 columns, but it also presents several common data quality issues:
 
 - **Missing Values:** Some columns contain missing entries that require appropriate handling to ensure data integrity.
