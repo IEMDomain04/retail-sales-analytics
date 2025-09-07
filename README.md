@@ -4,7 +4,16 @@ This project demonstrates data cleaning techniques on retail sales data. It is d
 
 [Press me to see Dashboard sample..](visuals/retail-sale-img.png)
 
-## Dataset Characteristics
+## Project Team
+
+| Name                | Role                        |
+|---------------------|---------------------------- |
+| Bilan, Edrill       | **Descriptive Analyst**         |
+| Deldoc, Rojo        | **Diagnostic Analyst**          |
+| Lopez, Roman        | **Predictive Analyst**          |
+| Manduriaga, Emman   | **Data Quality Analyst**        |
+
+Our team carried out **prescriptive analytics** together.
 
 The retail sales dataset consists of 2823 rows and 25 columns, but it also presents several common data quality issues:
 
